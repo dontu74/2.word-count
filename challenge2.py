@@ -4,7 +4,7 @@ from enum import unique
 import sys
 import re
 
-print("Welcome !, this demo is using text content from the novel 'Oliver Twisted' Chapter III.\n")
+print("\nWelcome !, this demo is using text content from the novel 'Oliver Twisted' Chapter III.\n")
 
 # Create a function call to count how many characters in the file
 def count_char (letter):
@@ -15,7 +15,7 @@ def count_char (letter):
     # print(new_word)
     for n in new_word: # using the for loop to add each alphabet letter to the x array list
         x += n
-    return print("Total number of characters in this file: " + str(len(x))) # using the len() to determine the length of the contents
+    return print("\nTotal number of characters in this file: " + str(len(x))) # using the len() to determine the length of the contents
     # return print(x)
 
 # Create a function call to count how many words in the file
@@ -31,7 +31,7 @@ def count_words (letter):
         # new_array += n
         cont += 1
         # print(cont)
-    return print("Total number of words count in this file: " + str(cont))
+    return print("\nTotal number of words count in this file: " + str(cont))
 
 
 # Create a function call to count how many sentence in the file
@@ -41,7 +41,7 @@ def count_sent (letter):
         if n.endswith("."): # the endswith() method will search for a period at the end of the sentence
             cnt += 1
             # print(n)
-    return print("Total number of sentences in this file: " + str(cnt))
+    return print("\nTotal number of sentences in this file: " + str(cnt))
 
 # Create a function call to count how many paragraph in the file
 def count_para (letter):
@@ -52,7 +52,7 @@ def count_para (letter):
         paragraphCount += 1
     # print(paragraphCount)
   
-    return print("Total number of paragraphs in this file: " + str(paragraphCount))
+    return print("\nTotal number of paragraphs in this file: " + str(paragraphCount))
 
 # Create a function call to count how many unique word in the file
 def count_bigr (letter):
@@ -67,8 +67,20 @@ def count_bigr (letter):
             word_count[line] = 1
         else:
             word_count[line] += 1
- 
-    return print("Total number of unique pairs of words in this file: " + str(word_count))
+    # for k, v in word_count:
+    # sortedbyKey = {k: v for k, v in sorted(word_count.items())}
+    sortedbyVal = {k: v for k, v in sorted(word_count.items(), key= lambda v: v[1])}
+    sortedbyVal2 = {k: v for k, v in sorted(word_count.items(), key= lambda v: v[1], reverse=True)}
+    
+    arr = set(sortedbyVal)
+    # print(sortedbyKey)
+    # print(sortedbyVal)
+    print("\nThe following are the most unique words in the content:\n\n " + str(arr))
+    # print(sortedbyVal2)
+    # print(sorted(word_count.keys()))
+    # print(sorted(word_count.values()))
+
+    # return print("Total number of unique pairs of words in this file: " + str(unique_words_count))
 
 # This function will replace all the "a" or "A" to "@" and all the "e" and "E" to "3"
 def funker_words(phrase):
@@ -84,7 +96,7 @@ def funker_words(phrase):
             new_phrase += '9'
         else:
             new_phrase += letter
-    return print(new_phrase)
+    return print(new_phrase + "\n")
 
 with open('demo.txt', 'r') as f:
     word_string = f.read()   # the read () method read the contents from the file and assigned a variable "word_string" as a place holder for those contents
@@ -97,12 +109,8 @@ with open('demo.txt', 'r') as f:
     count_sent(word_string) 
     count_para(word_string) 
     count_bigr(word_string) 
-    funker_words(word_string)
+    # funker_words(word_string)
     
   
-    
-
-
-
 # assign y as an empty word_string - for place holder
 # using the with open() in the sys library to read an external file name " demo.txt" as a f variable
